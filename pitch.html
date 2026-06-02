@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cariflow LLC — Company Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1f3d;
+      --navy-mid: #1a3057;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-sky: #60a5fa;
+      --blue-pale: #bfdbfe;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --accent: #0ea5e9;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--gray-800);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15, 31, 61, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-wordmark {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: var(--white) !important;
+      padding: 0.4rem 1rem !important;
+      border-radius: 6px;
+    }
+
+    .nav-cta:hover { background: var(--blue-light) !important; }
+
+    /* ── SECTIONS ── */
+    section { scroll-margin-top: 60px; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 50%, #0d2550 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 2rem 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.2);
+      border: 1px solid rgba(59,130,246,0.4);
+      color: var(--blue-pale);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .hero-logo-mark {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+    }
+
+    #hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+
+    #hero h1 span { color: var(--blue-sky); }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.7);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tagline em {
+      color: var(--blue-pale);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint svg { width: 20px; height: 20px; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── PROBLEM ── */
+    #problem { background: var(--gray-50); }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .quote-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .quote-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem; left: 1.5rem;
+      font-size: 4rem;
+      color: var(--blue-pale);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .quote-text {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      font-style: italic;
+      line-height: 1.6;
+      padding-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .quote-persona {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .problem-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-box {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--blue-sky);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    /* ── SOLUTION ── */
+    #solution { background: var(--white); }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .solution-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .brand-name-break {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .word-piece {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--gray-50);
+      border-radius: 10px;
+      border-left: 4px solid var(--blue);
+    }
+
+    .word-piece:nth-child(2) { border-left-color: var(--accent); }
+    .word-piece:nth-child(3) { border-left-color: var(--blue-sky); }
+
+    .word-glyph {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--navy);
+      min-width: 60px;
+    }
+
+    .word-def strong { display: block; font-size: 0.85rem; font-weight: 700; color: var(--navy); }
+    .word-def span { font-size: 0.8rem; color: var(--gray-600); }
+
+    .solution-points { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+    .solution-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    .solution-points li::before {
+      content: '→';
+      color: var(--blue);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── WHO WE SERVE ── */
+    #who-we-serve { background: var(--gray-50); }
+
+    .personas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .persona-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .persona-card:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 8px 30px rgba(37,99,235,0.1);
+      transform: translateY(-3px);
+    }
+
+    .persona-icon {
+      width: 48px; height: 48px;
+      background: var(--navy);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .persona-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .persona-card .persona-pain {
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .persona-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .persona-quote {
+      font-size: 0.85rem;
+      color: var(--navy-mid);
+      font-style: italic;
+      border-left: 3px solid var(--blue-pale);
+      padding-left: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .pain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .pain-list li {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .pain-list li::before {
+      content: '•';
+      color: var(--blue);
+      position: absolute;
+      left: 0;
+    }
+
+    /* ── CUSTOMER JOURNEY ── */
+    #journey { background: var(--navy); }
+
+    #journey .section-label { color: var(--blue-sky); }
+    #journey .section-title { color: var(--white); }
+    #journey .section-subtitle { color: rgba(255,255,255,0.6); }
+
+    .journey-tabs {
+      display: flex;
+      gap: 0;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .journey-tab {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+      min-width: 120px;
+    }
+
+    .journey-tab:hover { color: rgba(255,255,255,0.8); }
+
+    .journey-tab.active {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .journey-panel { display: none; }
+    .journey-panel.active { display: block; }
+
+    .journey-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .journey-content { grid-template-columns: 1fr; }
+    }
+
+    .journey-stage-number {
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(96,165,250,0.2);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .journey-panel h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .journey-panel p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .journey-quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .journey-quote-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+    }
+
+    .service-card:hover {
+      box-shadow: 0 8px 30px rgba(37,99,235,0.12);
+      transform: translateY(-3px);
+    }
+
+    .service-number {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--gray-100);
+      color: var(--gray-600);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how-it-works { background: var(--gray-50); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .step {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .step:hover {
+      border-color: var(--blue-light);
+      transform: translateY(-2px);
+    }
+
+    .step-num {
+      width: 48px; height: 48px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .step h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ── BUSINESS MODEL ── */
+    #business-model { background: var(--white); }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .model-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    .model-card h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .model-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    .differentiators {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .diff-item { text-align: center; }
+
+    .diff-item .diff-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .diff-item h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .diff-item p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* ── MARKET ── */
+    #market { background: var(--gray-50); }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .market-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .market-card .market-size {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .market-card .market-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .market-card p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* ── FOUNDER ── */
+    #founder { background: var(--navy); }
+    #founder .section-label { color: var(--blue-sky); }
+    #founder .section-title { color: var(--white); }
+
+    .founder-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .founder-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .founder-avatar {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .avatar-circle {
+      width: 96px; height: 96px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    .founder-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .founder-title {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.25rem;
+    }
+
+    .founder-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .chip {
+      background: rgba(37,99,235,0.2);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: var(--blue-pale);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    .founder-bio p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .founder-quote {
+      border-left: 3px solid var(--blue);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .founder-quote p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.9);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ── TRACTION / STATUS ── */
+    #traction { background: var(--white); }
+
+    .traction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .traction-item {
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .traction-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+
+    .status-done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-progress {
+      background: #fef9c3;
+      color: #713f12;
+    }
+
+    .status-next {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .traction-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
+    }
+
+    .traction-item p {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    #cta {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      text-align: center;
+    }
+
+    #cta .section-title { color: var(--white); }
+    #cta .section-subtitle { color: rgba(255,255,255,0.6); margin: 0 auto 2.5rem; }
+
+    .cta-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .contact-card .contact-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-card a {
+      color: var(--blue-pale);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .contact-card a:hover { color: var(--white); }
+
+    .cta-disclaimer {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080f1e;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.6;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .journey-tabs { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M26 8 C26 8 22 6 16 6 C10 6 6 10 6 16" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <line x1="10" y1="14" x2="26" y2="14" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+      <line x1="10" y1="19" x2="24" y2="19" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="10" y1="24" x2="22" y2="24" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-wordmark">CARIFLOW</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#who-we-serve">Who We Serve</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#business-model">Model</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#cta" class="nav-cta">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-badge">Cariflow LLC · Pre-Launch · Long Beach, CA · 2026</div>
+
+  <svg class="hero-logo-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M65 20 C65 20 55 14 40 14 C25 14 14 25 14 40" stroke="#3b82f6" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <line x1="24" y1="36" x2="66" y2="36" stroke="#3b82f6" stroke-width="7" stroke-linecap="round"/>
+    <line x1="24" y1="49" x2="60" y2="49" stroke="#60a5fa" stroke-width="5.5" stroke-linecap="round"/>
+    <line x1="24" y1="60" x2="54" y2="60" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+
+  <h1>AI Automation Consulting<br/>for <span>Healthcare Practices</span><br/>and Small Businesses</h1>
+
+  <p class="hero-tagline">
+    <em>We see you.</em> Let us step in and carry the weight with you —
+    because no one should have to navigate this alone.
+    So your care can flow the way it was always meant to.
+  </p>
+
+  <div class="hero-meta">
+    <span class="hero-pill">AI Agent Deployment</span>
+    <span class="hero-pill">Workflow Automation</span>
+    <span class="hero-pill">Managed AI Infrastructure</span>
+    <span class="hero-pill">Healthcare Practices</span>
+    <span class="hero-pill">SMBs</span>
+  </div>
+
+  <div class="hero-buttons">
+    <a href="#cta" class="btn-primary">Connect With Us</a>
+    <a href="#problem" class="btn-outline">Explore the Vision ↓</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+  </div>
+</section>
+
+<!-- ── THE PROBLEM ── -->
+<section id="problem">
+  <div class="section-inner">
+    <p class="section-label">The Problem</p>
+    <div class="divider"></div>
+    <h2 class="section-title">The people who carry the most<br/>are the most underserved by technology</h2>
+    <p class="section-subtitle">Healthcare practitioners and small business operators are drowning in operational overhead — while enterprise-grade AI solutions remain inaccessible and vendor pitches miss the real pain entirely.</p>
+
+    <div class="quote-grid">
+      <div class="quote-card">
+        <p class="quote-text">I can't remember why I became a doctor. I feel like a data entry clerk with a medical degree.</p>
+        <div class="quote-persona">The Burned-Out Physician</div>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">I'm the only one holding this practice together. If I go down, everything stops.</p>
+        <div class="quote-persona">The Overwhelmed Office Manager</div>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">Everyone's talking about AI. I don't even have time to figure out where to start.</p>
+        <div class="quote-persona">The Practice Owner</div>
+      </div>
+    </div>
+
+    <div class="problem-stats">
+      <div class="stat-box">
+        <div class="stat-number">2–3hrs</div>
+        <div class="stat-label">Lost daily to prior authorizations, documentation, and inbox management</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">1.1M+</div>
+        <div class="stat-label">Independent physician practices in the U.S. — most with no dedicated IT support</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">33M+</div>
+        <div class="stat-label">Small businesses in the U.S. — the majority without AI automation access</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">$0</div>
+        <div class="stat-label">IT budget at most small practices — yet they face the same digital demands as enterprises</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE SOLUTION ── -->
+<section id="solution">
+  <div class="section-inner">
+    <p class="section-label">The Solution</p>
+    <div class="divider"></div>
+    <div class="solution-grid">
+      <div>
+        <h2 class="section-title">Built into the name itself</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">CARIFLOW is a coined word. Three ideas, one brand promise.</p>
+        <div class="brand-name-break">
+          <div class="word-piece">
+            <div class="word-glyph">Cari</div>
+            <div class="word-def">
+              <strong>To carry</strong>
+              <span>We carry the operational weight — the workflows, the chaos, the tools — so they don't have to.</span>
+            </div>
+          </div>
+          <div class="word-piece">
+            <div class="word-glyph">Care</div>
+            <div class="word-def">
+              <strong>The reason they do this</strong>
+              <span>Their patients, their clients, their purpose. The thing we protect by removing the noise around it.</span>
+            </div>
+          </div>
+          <div class="word-piece">
+            <div class="word-glyph">Flow</div>
+            <div class="word-def">
+              <strong>What happens next</strong>
+              <span>When the weight lifts, care flows the way it was always meant to.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="section-title">What we actually do</h2>
+        <p style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 1.5rem;">Cariflow is a hands-on consulting firm — not a software vendor. We sit with clients, understand their real workflows, and build practical AI automation that works within their existing constraints.</p>
+        <ul class="solution-points">
+          <li>Autonomous AI agents that handle time-consuming workflows from end to end</li>
+          <li>Workflow audits that identify the highest-impact bottlenecks in your operation</li>
+          <li>Tool integrations that make your existing systems actually talk to each other</li>
+          <li>Managed AI infrastructure that runs without requiring an IT team to maintain</li>
+          <li>Plain-language guidance — no jargon, no unnecessary complexity</li>
+          <li>Ongoing partnership — not a one-time project handoff</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO WE SERVE ── -->
+<section id="who-we-serve">
+  <div class="section-inner">
+    <p class="section-label">Who We Serve</p>
+    <div class="divider"></div>
+    <h2 class="section-title">Built for the people carrying the most weight</h2>
+    <p class="section-subtitle">We work with healthcare practices and small businesses where one person is holding everything together — and the world keeps changing faster than they can keep up.</p>
+
+    <div class="personas">
+      <div class="persona-card">
+        <div class="persona-icon">🏥</div>
+        <h3>Healthcare Practices</h3>
+        <div class="persona-pain">Primary ICP</div>
+        <p>Physicians, dentists, therapists, and the teams running their practices — navigating patient care, compliance, billing, and now AI all at once.</p>
+        <ul class="pain-list">
+          <li>Hours lost daily to prior authorizations and documentation</li>
+          <li>Patient follow-up and scheduling chaos</li>
+          <li>Front desk overwhelmed by phone and inbox volume</li>
+          <li>No time to evaluate or implement new tools</li>
+          <li>Feeling left behind as healthcare technology accelerates</li>
+        </ul>
+        <div class="persona-quote">"I went to medical school to heal people. Now I'm a data entry clerk with a medical degree."</div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-icon">🏢</div>
+        <h3>Small & Medium Businesses</h3>
+        <div class="persona-pain">Secondary ICP</div>
+        <p>Business owners and operations managers running lean teams who know automation could transform their operations — but have no roadmap to get there.</p>
+        <ul class="pain-list">
+          <li>Manual processes eating hours that should go to growth</li>
+          <li>Disconnected tools that don't talk to each other</li>
+          <li>No IT department — just one person figuring it all out</li>
+          <li>AI feels overwhelming, expensive, or out of reach</li>
+          <li>Too busy surviving to build systems that would help them thrive</li>
+        </ul>
+        <div class="persona-quote">"AI could change everything for us. I just don't know where to start — and I don't have time to find out."</div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-icon">📋</div>
+        <h3>The Office Manager Persona</h3>
+        <div class="persona-pain">Key Decision Influencer</div>
+        <p>She is the one person holding the entire practice together. Phones, scheduling, insurance calls, patient follow-ups — all of it. She's the unofficial IT department, COO, and customer service rep in one role.</p>
+        <ul class="pain-list">
+          <li>System is fragile — everything depends on her knowledge</li>
+          <li>No documentation, no backup, no handoff plan</li>
+          <li>Every interruption breaks a dozen tasks at once</li>
+          <li>Not burned out on the career — burned out on the chaos</li>
+        </ul>
+        <div class="persona-quote">"Nobody ever acknowledges what I carry. When I read about Cariflow, I actually cried a little."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CUSTOMER JOURNEY ── -->
+<section id="journey">
+  <div class="section-inner">
+    <p class="section-label">The Customer Journey</p>
+    <div class="divider"></div>
+    <h2 class="section-title">From invisible to unstoppable</h2>
+    <p class="section-subtitle">Every Cariflow client goes through the same four-stage emotional and operational journey.</p>
+
+    <div class="journey-tabs">
+      <button class="journey-tab active" onclick="showJourney(0)">1 · The Isolation</button>
+      <button class="journey-tab" onclick="showJourney(1)">2 · The Acceleration</button>
+      <button class="journey-tab" onclick="showJourney(2)">3 · The Recognition</button>
+      <button class="journey-tab" onclick="showJourney(3)">4 · The Relief</button>
+    </div>
+
+    <div id="jp-0" class="journey-panel active">
+      <div class="journey-content">
+        <div>
+          <div class="journey-stage-number">01</div>
+          <h3>The Isolation</h3>
+          <p>They're surrounded by people — patients, staff, colleagues — but completely alone in carrying the full picture. Nobody else sees all of it at once.</p>
+          <p>The physician carries clinical decisions AND business operations AND now AI is changing everything. The office manager IS the system — no backup, no documentation, no one who knows what she knows.</p>
+        </div>
+        <div class="journey-quotes">
+          <div class="journey-quote-item">"My partners are drowning too. There's nobody to ask."</div>
+          <div class="journey-quote-item">"If I get sick, this whole practice stops."</div>
+          <div class="journey-quote-item">"I've been doing this for 15 years and I've never felt more behind."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jp-1" class="journey-panel">
+      <div class="journey-content">
+        <div>
+          <div class="journey-stage-number">02</div>
+          <h3>The Acceleration</h3>
+          <p>The world is changing faster than they can keep up. AI, automation, new tools — every week something new. Every vendor promising to solve everything. Nobody speaking their language.</p>
+          <p>Nobody who understands a small practice, a tight budget, a two-person front desk. They're not afraid of technology. They're afraid of being left behind while figuring it out alone.</p>
+        </div>
+        <div class="journey-quotes">
+          <div class="journey-quote-item">"I can't fall behind but I have no time to catch up."</div>
+          <div class="journey-quote-item">"Everyone's talking about AI. I don't even know where to start."</div>
+          <div class="journey-quote-item">"Every vendor I talk to wants to sell me software. Nobody asks what my day actually looks like."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jp-2" class="journey-panel">
+      <div class="journey-content">
+        <div>
+          <div class="journey-stage-number">03</div>
+          <h3>The Recognition</h3>
+          <p>Then they find Cariflow. And for the first time — someone speaks their language. Not a vendor. Not a software pitch. A partner who sees the whole picture, understands the weight, and knows how to navigate the change without leaving them behind.</p>
+          <p>The first thing we do is listen. No pitch. No feature list. Just: tell me what your days actually look like.</p>
+        </div>
+        <div class="journey-quotes">
+          <div class="journey-quote-item">"He gets it. He actually knows what my days look like."</div>
+          <div class="journey-quote-item">"Someone I can actually call — not a ticket system."</div>
+          <div class="journey-quote-item">"He's not trying to sell me a platform. He wants to understand my practice."</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jp-3" class="journey-panel">
+      <div class="journey-content">
+        <div>
+          <div class="journey-stage-number">04</div>
+          <h3>The Relief</h3>
+          <p>Care flows the way it was always meant to. Not because everything is automated — but because they finally have a guide through the chaos. Someone who carries the operational weight with them, navigates the change alongside them, and never lets them fall behind alone again.</p>
+          <p>This is the brand promise delivered. And it's also the story a satisfied client tells their colleagues.</p>
+        </div>
+        <div class="journey-quotes">
+          <div class="journey-quote-item">"I remember why I became a doctor."</div>
+          <div class="journey-quote-item">"For the first time in years, I feel like I can breathe."</div>
+          <div class="journey-quote-item">"My front desk used to spend half the day on follow-up calls. Now it's handled automatically."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label">Services</p>
+    <div class="divider"></div>
+    <h2 class="section-title">We carry what your practice demands</h2>
+    <p class="section-subtitle">Practical, hands-on AI and automation services — built around your real workflows, your real budget, and your real goals.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-number">Service 01</div>
+        <h3>AI Agent Deployment</h3>
+        <p>We design, build, and deploy autonomous AI agents that handle your most time-consuming workflows — from patient intake to follow-up calls — so your team focuses on what only humans can do.</p>
+        <div class="service-tags">
+          <span class="tag">Intake Automation</span>
+          <span class="tag">AI Scheduling</span>
+          <span class="tag">Follow-up Agents</span>
+          <span class="tag">Document Handling</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number">Service 02</div>
+        <h3>Workflow Automation</h3>
+        <p>We map your current operations, identify the highest-impact bottlenecks, and build automated workflows that connect your tools and eliminate the manual steps stealing your day.</p>
+        <div class="service-tags">
+          <span class="tag">Process Mapping</span>
+          <span class="tag">Tool Integration</span>
+          <span class="tag">Custom Automations</span>
+          <span class="tag">n8n / Make</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number">Service 03</div>
+        <h3>Managed AI Infrastructure</h3>
+        <p>For practices and businesses that want AI running in the background — always on, always working — without needing an IT team to maintain it. We set it up and keep it running.</p>
+        <div class="service-tags">
+          <span class="tag">Setup & Deployment</span>
+          <span class="tag">Ongoing Management</span>
+          <span class="tag">Monthly Retainer</span>
+          <span class="tag">Always-On AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <p class="section-label">How It Works</p>
+    <div class="divider"></div>
+    <h2 class="section-title">Simple, clear, no surprises</h2>
+    <p class="section-subtitle">We don't do lengthy discovery projects or complicated onboarding. We move fast, start small, and build from real results.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Free 30-Min Call</h4>
+        <p>We listen first. You tell us what your days actually look like and where the weight is heaviest. No pitch, no pressure.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>We Map the Weight</h4>
+        <p>We identify the highest-impact workflows — the ones stealing the most time — and build a clear, affordable plan to address them.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>We Build &amp; Deploy</h4>
+        <p>We do the technical work. You don't need to understand AI or automation. You just need to see it working in your practice.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Care Flows Freely</h4>
+        <p>Your operations run lighter. Your team breathes easier. You get back to the work you actually got into this for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUSINESS MODEL ── -->
+<section id="business-model">
+  <div class="section-inner">
+    <p class="section-label">Business Model</p>
+    <div class="divider"></div>
+    <h2 class="section-title">Consulting-first. Not SaaS.</h2>
+    <p class="section-subtitle">Cariflow generates revenue through consulting engagements and managed services — not subscription software. This is intentional. It lets us move fast, stay client-focused, and build trust before scale.</p>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <h4>Project Consulting</h4>
+        <p>Fixed-scope engagements: workflow audit, AI agent build, integration project. Clear deliverables, clear price.</p>
+      </div>
+      <div class="model-card">
+        <h4>Managed Retainer</h4>
+        <p>Monthly ongoing support: AI infrastructure management, monitoring, iteration. Recurring revenue base.</p>
+      </div>
+      <div class="model-card">
+        <h4>Rapid Assessment</h4>
+        <p>Entry-point offer: 2-hour workflow review + prioritized automation roadmap. Low barrier, high conversion.</p>
+      </div>
+      <div class="model-card">
+        <h4>Productized Services</h4>
+        <p>Each successful engagement becomes a repeatable package — healthcare intake bot, front desk automation, etc.</p>
+      </div>
+    </div>
+
+    <div class="differentiators">
+      <div class="diff-item">
+        <div class="diff-icon">🎯</div>
+        <h5>Human-first</h5>
+        <p>We witness before we sell. The first job of every interaction is to make the client feel seen.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🔧</div>
+        <h5>Implementation Partner</h5>
+        <p>We don't hand off a report. We stay until it works. Then we stay to keep it working.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">💡</div>
+        <h5>No-Jargon Promise</h5>
+        <p>Plain language. No AI buzzwords unless they actually help the client understand what they're getting.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">📈</div>
+        <h5>Built to Scale</h5>
+        <p>Every engagement becomes a runbook. Every runbook becomes a product. The flywheel builds itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARKET ── -->
+<section id="market">
+  <div class="section-inner">
+    <p class="section-label">Market Opportunity</p>
+    <div class="divider"></div>
+    <h2 class="section-title">A massive, underserved market</h2>
+    <p class="section-subtitle">Enterprise AI automation is a solved problem. Small healthcare practices and SMBs are still waiting for their version of it.</p>
+
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-label">TAM</div>
+        <div class="market-size">$50B+</div>
+        <p>AI professional services market in the U.S. — growing 35%+ annually as adoption accelerates across all business sizes.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-label">Healthcare SMB</div>
+        <div class="market-size">1.1M+</div>
+        <p>Independent physician practices in the U.S. — the majority with no dedicated IT or automation support.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-label">SMB Addressable</div>
+        <div class="market-size">33M+</div>
+        <p>Small businesses in the U.S. The vast majority can't afford enterprise AI tools or consultants — until now.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-label">Timing</div>
+        <div class="market-size">Now</div>
+        <p>AI tooling has crossed the SMB affordability threshold in 2025–2026. The window to be the trusted guide is open today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section id="founder">
+  <div class="section-inner">
+    <p class="section-label">The Founder</p>
+    <div class="divider"></div>
+    <h2 class="section-title">The people who care most deserve<br/>someone who cares just as much.</h2>
+
+    <div class="founder-layout">
+      <div class="founder-avatar">
+        <div class="avatar-circle">DH</div>
+        <div class="founder-name">Dave Horton</div>
+        <div class="founder-title">Founder · Cariflow LLC<br/>DevOps Architect · Long Beach, CA</div>
+        <div class="founder-chips">
+          <span class="chip">DevOps</span>
+          <span class="chip">AI Infrastructure</span>
+          <span class="chip">Automation</span>
+          <span class="chip">Healthcare Tech</span>
+          <span class="chip">Cloud Architecture</span>
+        </div>
+      </div>
+
+      <div class="founder-bio">
+        <p>I'm a DevOps architect by trade. I've spent years building infrastructure for large organizations — the kind of automation, AI systems, and workflow tooling that quietly saves them thousands of hours a year.</p>
+
+        <p>And the whole time, in the back of my mind, I kept thinking: the people who need this most don't have access to any of it.</p>
+
+        <div class="founder-quote">
+          <p>"The physician staying late finishing notes after a full day of patients. The office manager who is, somehow, the entire IT department, the scheduler, the insurance liaison, and the person answering the phone — all at once. I see you. And I know that nobody's coming to help unless you go find them yourself."</p>
+        </div>
+
+        <p>That's why I started Cariflow. Not to sell software. Not to pitch a platform. But to be the person who actually shows up, understands the full picture, and does the work that makes the weight lighter.</p>
+
+        <p>I built Cariflow's own infrastructure — AI agents, automation workflows, and managed systems — before taking on my first client. We are our own first case study. Everything I offer, I've built and run myself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRACTION ── -->
+<section id="traction">
+  <div class="section-inner">
+    <p class="section-label">Where We Are</p>
+    <div class="divider"></div>
+    <h2 class="section-title">Pre-launch. Fully built. Moving fast.</h2>
+    <p class="section-subtitle">Cariflow LLC was incorporated in California in May 2026. Here's what's already in place and what's next.</p>
+
+    <div class="traction-grid">
+      <div class="traction-item">
+        <span class="traction-status status-done">✓ Done</span>
+        <h4>LLC Formation</h4>
+        <p>Cariflow LLC incorporated in California, May 2026. EIN issued. Banking active (Mercury).</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-done">✓ Done</span>
+        <h4>Brand &amp; Identity</h4>
+        <p>Brand story, tagline, logo, and voice guidelines complete. gocariflow.com domain registered and live.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-done">✓ Done</span>
+        <h4>Website Live</h4>
+        <p>Full site built and deployed to Cloudflare Pages. Auto-deploys from GitHub on every push.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-done">✓ Done</span>
+        <h4>AI Infrastructure</h4>
+        <p>Always-on AI agent infrastructure operational. OpenClaw, Nvidia NIM, Discord pipeline running.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-done">✓ Done</span>
+        <h4>Insurance Agent (Phase 1)</h4>
+        <p>Autonomous term life insurance quote-shopping agent — first real automation product built and running.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-progress">⟳ In Progress</span>
+        <h4>First Client Pipeline</h4>
+        <p>Warm prospect in insurance sector. Calendly booking link active. First paid engagement in progress.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-progress">⟳ In Progress</span>
+        <h4>Trademark Strategy</h4>
+        <p>Full USPTO research complete. Attorney shortlist vetted. Clearance opinion pending before filing.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-next">→ Next</span>
+        <h4>First Paying Client</h4>
+        <p>Close first signed SOW. One client turns Cariflow from a website into a revenue-generating business.</p>
+      </div>
+      <div class="traction-item">
+        <span class="traction-status status-next">→ Next</span>
+        <h4>Case Study &amp; Content</h4>
+        <p>Document every build. Publish on the site. Turn each engagement into proof of what Cariflow can do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="section-inner" style="text-align: center;">
+    <p class="section-label" style="color: var(--blue-sky);">Let's Talk</p>
+    <div class="divider" style="margin: 0 auto 2rem;"></div>
+    <h2 class="section-title" style="color: var(--white); max-width: 600px; margin: 0 auto 1rem;">Interested in partnering,<br/>advising, or investing?</h2>
+    <p class="section-subtitle" style="color: rgba(255,255,255,0.6); margin: 0 auto 2.5rem;">We're actively seeking mentors, advisors, partners, and early investors who believe that the people carrying the most weight deserve world-class tools. Let's explore what's possible.</p>
+
+    <div class="cta-contact-grid">
+      <div class="contact-card">
+        <div class="contact-label">Email</div>
+        <a href="mailto:dave@gocariflow.com">dave@gocariflow.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Book a Call</div>
+        <a href="https://calendly.com/daveops-cloudai/30min" target="_blank" rel="noopener">30-Min Intro Call →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-label">Website</div>
+        <a href="https://gocariflow.com" target="_blank" rel="noopener">gocariflow.com</a>
+      </div>
+    </div>
+
+    <a href="https://calendly.com/daveops-cloudai/30min" target="_blank" rel="noopener" class="btn-primary" style="display: inline-block;">Book a Free 30-Min Call →</a>
+
+    <p class="cta-disclaimer">Cariflow LLC · Long Beach, California · Serving clients nationwide · Pre-revenue, pre-launch · May 2026</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Cariflow LLC — Long Beach, California. AI automation and workflow consulting for healthcare practices and small businesses.<br/>
+  <em>We carry. You care. And together, care flows the way it was always meant to.</em></p>
+</footer>
+
+<script>
+  function showJourney(index) {
+    document.querySelectorAll('.journey-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.journey-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
+  }
+
+  // Fade-in sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.quote-card, .stat-box, .persona-card, .service-card, .step, .model-card, .market-card, .traction-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
