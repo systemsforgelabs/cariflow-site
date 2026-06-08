@@ -33,6 +33,7 @@
   nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(248,250,253,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
   .nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--navy);text-decoration:none;letter-spacing:-0.02em;}
   .nav-logo span{color:var(--accent);}
+  .hero-logo{display:block;margin:0 auto 3rem;width:min(420px,75%);height:auto;mix-blend-mode:multiply;}
   .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
   .nav-links a{font-size:0.875rem;font-weight:400;color:var(--navy-lt);text-decoration:none;letter-spacing:0.01em;transition:color 0.2s;}
   .nav-links a:hover{color:var(--navy);}
@@ -43,10 +44,11 @@
   .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden;background:var(--bg);}
   .hero::before{content:'';position:absolute;top:-15%;right:-8%;width:640px;height:640px;background:radial-gradient(circle,rgba(46,123,196,0.07) 0%,transparent 70%);pointer-events:none;}
   .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--border);}
-  .hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:center;}
+  .hero-wrap{max-width:1100px;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:center;}
+  .hero-inner{width:100%;display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:center;}
   .hero-eyebrow{font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.75rem;display:flex;align-items:center;gap:0.75rem;opacity:0;animation:fadeUp 0.7s ease forwards 0.1s;}
   .hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--accent);}
-  .hero-tagline{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.1rem);font-weight:500;line-height:1.25;color:var(--navy);letter-spacing:-0.02em;margin-bottom:2.5rem;}
+  .hero-tagline{font-family:var(--font-display);font-size:clamp(1.35rem,2.8vw,2rem);font-weight:500;line-height:1.25;color:var(--navy);letter-spacing:-0.02em;margin-bottom:2.5rem;}
   .hero-tagline .line{display:block;overflow:hidden;}
   .hero-tagline .line span{display:block;opacity:0;transform:translateY(30px);animation:lineReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards;}
   .hero-tagline .line:nth-child(1) span{animation-delay:0.2s;}
@@ -162,6 +164,7 @@
     .nav-links{display:none;}
     .hero{padding:7rem 1.5rem 4rem;}
     .hero-inner{grid-template-columns:1fr;gap:3rem;}
+    .hero-wrap{align-items:flex-start;}
     .hero-card{display:none;}
     section{padding:4rem 1.5rem;}
     .serve-grid{grid-template-columns:1fr;}
@@ -190,6 +193,8 @@
 </nav>
 
 <section class="hero" id="home">
+  <div class="hero-wrap">
+  <img src="cariflow-logo-better.png" alt="Cariflow" class="hero-logo">
   <div class="hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow">AI &amp; Workflow Automation</p>
@@ -220,6 +225,7 @@
         <p class="persona-pain">"Everyone's talking about AI. I don't even have time to figure out where to start."</p>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
