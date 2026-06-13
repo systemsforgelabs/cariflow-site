@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cariflow — Brand Story & Emotional Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #F8FAFD;
+    --bg-tint:  #EEF4FB;
+    --bg-deep:  #E4EDF7;
+    --navy:     #1A2F45;
+    --navy-mid: #2A4460;
+    --navy-lt:  #3D5A78;
+    --muted:    #6B83A0;
+    --accent:   #2E7BC4;
+    --accent-lt:#B5D4F4;
+    --coral:    #C17E4A;
+    --border:   rgba(24,95,165,0.12);
+    --font-d:   'Lora', Georgia, serif;
+    --font-b:   'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-b);
+    background: var(--bg);
+    color: var(--navy);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* HEADER */
+  .doc-header {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+  .doc-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .doc-eyebrow::before,
+  .doc-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .doc-title {
+    font-family: var(--font-d);
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .doc-title span { color: var(--accent); }
+  .doc-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-style: italic;
+    font-family: var(--font-d);
+  }
+
+  /* TAGLINE BLOCK */
+  .tagline-block {
+    max-width: 760px;
+    margin: 0 auto 4.5rem;
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 2.5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .tagline-block::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(46,123,196,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tagline-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-lt);
+    opacity: 0.7;
+    margin-bottom: 1.25rem;
+  }
+  .tagline-line {
+    font-family: var(--font-d);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: rgba(248,250,253,0.95);
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+  .tagline-line:last-child { margin-bottom: 0; }
+  .tagline-line em { color: var(--accent-lt); font-style: italic; }
+  .tagline-line.anchor { color: var(--accent-lt); }
+
+  /* SECTION LABEL */
+  .s-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .s-label::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .s-heading {
+    font-family: var(--font-d);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .s-sub {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-family: var(--font-d);
+  }
+
+  /* PERSONAS */
+  .personas-wrap {
+    max-width: 900px;
+    margin: 0 auto 4.5rem;
+  }
+  .personas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .persona-card {
+    background: var(--bg-tint);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .persona-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .persona-role {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .persona-pain {
+    font-family: var(--font-d);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--navy-mid);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 0.875rem;
+  }
+  .persona-truth {
+    font-size: 0.825rem;
+    color: var(--navy-lt);
+    line-height: 1.6;
+  }
+  .persona-truth strong { color: var(--navy); font-weight: 500; }
+
+  /* JOURNEY FLOW */
+  .journey-wrap {
+    max-width: 900px;
+    margin: 0 auto 4.5rem;
+  }
+  .journey-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .journey-beat {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 0 1.5rem;
+    position: relative;
+  }
+  .beat-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .beat-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--font-d);
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+  .beat-line {
+    width: 1px;
+    flex: 1;
+    min-height: 2rem;
+    margin: 4px 0;
+  }
+  .beat-right {
+    padding-bottom: 2.5rem;
+  }
+  .beat-right:last-child { padding-bottom: 0; }
+
+  /* Beat color themes */
+  .beat-1 .beat-circle { background: #FAECE7; color: #993C1D; border: 1px solid rgba(153,60,29,0.2); }
+  .beat-1 .beat-line { background: rgba(153,60,29,0.15); }
+  .beat-1 .beat-tag { background: #FAECE7; color: #993C1D; }
+
+  .beat-2 .beat-circle { background: #FAEEDA; color: #854F0B; border: 1px solid rgba(133,79,11,0.2); }
+  .beat-2 .beat-line { background: rgba(133,79,11,0.15); }
+  .beat-2 .beat-tag { background: #FAEEDA; color: #854F0B; }
+
+  .beat-3 .beat-circle { background: #E6F1FB; color: #185FA5; border: 1px solid rgba(24,95,165,0.2); }
+  .beat-3 .beat-line { background: rgba(24,95,165,0.15); }
+  .beat-3 .beat-tag { background: #E6F1FB; color: #185FA5; }
+
+  .beat-4 .beat-circle { background: #E1F5EE; color: #0F6E56; border: 1px solid rgba(15,110,86,0.2); }
+  .beat-4 .beat-tag { background: #E1F5EE; color: #0F6E56; }
+
+  .beat-num { font-size: 1rem; font-weight: 600; }
+  .beat-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 3px;
+    margin-bottom: 0.6rem;
+  }
+  .beat-title {
+    font-family: var(--font-d);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .beat-body {
+    font-size: 0.875rem;
+    color: var(--navy-lt);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .beat-quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .beat-quote {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+  }
+  .beat-quote-role {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .beat-quote-text {
+    font-family: var(--font-d);
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--navy-mid);
+    line-height: 1.5;
+  }
+
+  /* VOICE PRINCIPLES */
+  .principles-wrap {
+    max-width: 900px;
+    margin: 0 auto 4.5rem;
+  }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .principle {
+    background: var(--bg-tint);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+  }
+  .principle-title {
+    font-family: var(--font-d);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .principle-body {
+    font-size: 0.825rem;
+    color: var(--navy-lt);
+    line-height: 1.6;
+  }
+
+  /* ETHOS */
+  .ethos-wrap {
+    max-width: 760px;
+    margin: 0 auto 3rem;
+    background: var(--bg-tint);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem 3rem;
+    position: relative;
+  }
+  .ethos-quote-mark {
+    font-family: var(--font-d);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.15;
+    position: absolute;
+    top: 1rem; left: 1.75rem;
+  }
+  .ethos-text {
+    font-family: var(--font-d);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--navy-mid);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+  .ethos-close {
+    font-family: var(--font-d);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    font-style: normal;
+  }
+  .ethos-sig {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ethos-sig::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  /* FOOTER */
+  .doc-footer {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .doc-footer-logo {
+    font-family: var(--font-d);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .doc-footer-logo span { color: var(--accent); }
+  .doc-footer-meta {
+    font-size: 0.775rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 680px) {
+    body { padding: 2rem 1.25rem 3rem; }
+    .personas-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .beat-quotes { grid-template-columns: 1fr; }
+    .tagline-block { padding: 2rem 1.5rem; }
+    .ethos-wrap { padding: 2rem 1.5rem; }
+    .doc-title { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <p class="doc-eyebrow">Brand Story & Ethos</p>
+  <h1 class="doc-title">Cari<span>flow</span></h1>
+  <p class="doc-sub">The emotional journey. The voice. The promise.</p>
+</div>
+
+<!-- TAGLINE -->
+<div class="tagline-block">
+  <p class="tagline-label">The Tagline — Locked</p>
+  <p class="tagline-line">We see you.</p>
+  <p class="tagline-line">Let us step in and <em>carry the weight with you</em> —</p>
+  <p class="tagline-line">because no one should have to navigate this alone.</p>
+  <p class="tagline-line anchor">So your care can flow the way it was always meant to.</p>
+</div>
+
+<!-- PERSONAS -->
+<div class="personas-wrap">
+  <p class="s-label">The People We Serve</p>
+  <h2 class="s-heading">Two personas. One truth.</h2>
+  <p class="s-sub">Both are carrying more than anyone sees. Both are looking for the same thing.</p>
+  <div class="personas-grid">
+    <div class="persona-card">
+      <p class="persona-role">The Burned-Out Physician</p>
+      <p class="persona-pain">"I can't remember why I became a doctor. I feel like a data entry clerk with a medical degree."</p>
+      <p class="persona-truth">They went to medical school to heal people. They're spending 2–3 hours a day on prior authorizations, inbox management, documentation, and follow-up calls. The pain isn't <strong>"I have busywork."</strong> It's <strong>"I've lost the reason I started."</strong></p>
+    </div>
+    <div class="persona-card">
+      <p class="persona-role">The Overwhelmed Office Manager</p>
+      <p class="persona-pain">"I'm the only one holding this practice together. If I go down, everything stops."</p>
+      <p class="persona-truth">She is the system. Phones, scheduling, insurance, patient follow-ups, paper charts — all of it. She's not burned out on a career. She's burned out on <strong>chaos with no end in sight.</strong> She's not looking for automation. She's looking for someone to say <strong>"I see how hard this is."</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNEY -->
+<div class="journey-wrap">
+  <p class="s-label">The Emotional Journey</p>
+  <h2 class="s-heading">From alone — to flowing freely.</h2>
+  <p class="s-sub">The four beats every Cariflow client moves through.</p>
+
+  <div class="journey-flow">
+
+    <div class="journey-beat beat-1">
+      <div class="beat-left">
+        <div class="beat-circle"><span class="beat-num">1</span></div>
+        <div class="beat-line"></div>
+      </div>
+      <div class="beat-right">
+        <span class="beat-tag">The Isolation</span>
+        <h3 class="beat-title">Surrounded by people. Alone with all of it.</h3>
+        <p class="beat-body">They're the only person seeing the whole picture. The physician carries clinical decisions AND business operations AND a changing industry — all at once. The office manager IS the system. No backup. No documentation. No one who knows what she knows. If she goes down, the practice goes down.</p>
+        <div class="beat-quotes">
+          <div class="beat-quote"><p class="beat-quote-role">Physician</p><p class="beat-quote-text">"My partners are drowning too. There's nobody to ask."</p></div>
+          <div class="beat-quote"><p class="beat-quote-role">Office Manager</p><p class="beat-quote-text">"If I get sick, this whole practice stops."</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-beat beat-2">
+      <div class="beat-left">
+        <div class="beat-circle"><span class="beat-num">2</span></div>
+        <div class="beat-line"></div>
+      </div>
+      <div class="beat-right">
+        <span class="beat-tag">The Acceleration</span>
+        <h3 class="beat-title">The world won't stop changing. And there's no time to catch up.</h3>
+        <p class="beat-body">AI, automation, new tools — every week something new. Every vendor promising to solve everything. Nobody speaking their language. Nobody who understands a small practice, a tight budget, a two-person front desk. They're not afraid of technology. They're afraid of being left behind while figuring it out completely alone.</p>
+        <div class="beat-quotes">
+          <div class="beat-quote"><p class="beat-quote-role">Physician</p><p class="beat-quote-text">"I can't fall behind but I have no time to catch up."</p></div>
+          <div class="beat-quote"><p class="beat-quote-role">Office Manager</p><p class="beat-quote-text">"Everyone's talking about AI. I don't even know where to start."</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-beat beat-3">
+      <div class="beat-left">
+        <div class="beat-circle"><span class="beat-num">3</span></div>
+        <div class="beat-line"></div>
+      </div>
+      <div class="beat-right">
+        <span class="beat-tag">The Recognition</span>
+        <h3 class="beat-title">Someone finally speaks their language.</h3>
+        <p class="beat-body">They find Cariflow. And for the first time — not a vendor, not a software pitch, not a ticket system. A partner who sees the whole picture, understands the weight, and knows how to navigate the change without leaving them behind. The moment the tagline lands and they think: "he gets it."</p>
+        <div class="beat-quotes">
+          <div class="beat-quote"><p class="beat-quote-role">Physician</p><p class="beat-quote-text">"He knows what my days actually look like."</p></div>
+          <div class="beat-quote"><p class="beat-quote-role">Office Manager</p><p class="beat-quote-text">"Someone I can actually call. Not a ticket system."</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-beat beat-4">
+      <div class="beat-left">
+        <div class="beat-circle"><span class="beat-num">4</span></div>
+      </div>
+      <div class="beat-right">
+        <span class="beat-tag">The Relief</span>
+        <h3 class="beat-title">Care flows the way it was always meant to.</h3>
+        <p class="beat-body">Not because everything is automated — but because they finally have a guide through the chaos. Someone who carries the operational weight with them, navigates the change alongside them, and never lets them fall behind alone again. They get back to the reason they started.</p>
+        <div class="beat-quotes">
+          <div class="beat-quote"><p class="beat-quote-role">Physician</p><p class="beat-quote-text">"I remember why I became a doctor."</p></div>
+          <div class="beat-quote"><p class="beat-quote-role">Office Manager</p><p class="beat-quote-text">"For the first time in years, I feel like I can breathe."</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VOICE PRINCIPLES -->
+<div class="principles-wrap">
+  <p class="s-label">Brand Voice</p>
+  <h2 class="s-heading">Five principles. Every word, every time.</h2>
+  <p class="s-sub">If it doesn't sound like this — rewrite it.</p>
+  <div class="principles-grid">
+    <div class="principle">
+      <p class="principle-title">Witness before selling</p>
+      <p class="principle-body">The first job of every word is to make the reader feel seen — not sold to. The tagline doesn't mention a single feature. It just says: we see you, we're here, and care can flow again.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-title">Honor the weight</p>
+      <p class="principle-body">What these people carry is real and heavy. Never minimize it as "busywork." Language acknowledges it as significant — without wallowing in it.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-title">Partner, not vendor</p>
+      <p class="principle-body">"Let us" not "we will." "Carry with you" not "carry for you." The posture is always beside them, never above them. They still lead. We illuminate the path.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-title">Human over technical</p>
+      <p class="principle-body">The site never leads with AI, automation, or technology. It leads with people. Trust precedes features — always. Tools are mentioned once you've already felt understood.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-title">Calm confidence</p>
+      <p class="principle-body">No hype. No "revolutionary." No "game-changing." Just a person who knows what they're doing, has seen the problem up close, and is ready to help carry it.</p>
+    </div>
+    <div class="principle">
+      <p class="principle-title">No one feels singled out</p>
+      <p class="principle-body">The language is universal — "no one should have to," not "you shouldn't have to." Their struggle is named without putting it on display. Dignity in every sentence.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOUNDING ETHOS -->
+<div class="ethos-wrap">
+  <span class="ethos-quote-mark">"</span>
+  <p class="ethos-text">I'm a DevOps architect who spent years building infrastructure for large organizations — the kind of automation and AI systems that quietly save them thousands of hours a year. The whole time, in the back of my mind, I kept thinking: the people who need this most don't have access to any of it.<br><br>
+  The physician staying late finishing notes after a full day of patients. The office manager who is, somehow, the entire IT department, the scheduler, the insurance liaison, and the person answering the phone — all at once. Nobody's coming to help unless you go find them yourself.<br><br>
+  That's why I started Cariflow. Not to sell software. Not to pitch a platform. But to be the person who actually shows up, learns how your practice works, and helps carry the weight.</p>
+  <p class="ethos-close">You got into this work for a reason. I'd love to help you get back to it.</p>
+  <p class="ethos-sig">Dave Horton — Founder, Cariflow</p>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <p class="doc-footer-logo">Cari<span>flow</span></p>
+  <p class="doc-footer-meta">
+    gocariflow.com &nbsp;·&nbsp; dave@gocariflow.com<br>
+    Long Beach, CA — Serving nationwide<br>
+    calendly.com/daveops-cloudai/30min
+  </p>
+</div>
+
+</body>
+</html>
