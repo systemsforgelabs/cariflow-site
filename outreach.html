@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cariflow — First Outreach Kit v3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --ink: #1c1917; --warm: #faf7f4; --parchment: #f2ede6;
+    --accent: #3b6e52; --accent-light: #eaf3ee;
+    --gold: #b07d2e; --gold-light: #fdf4e3;
+    --muted: #78716c; --border: #e7e0d8; --white: #ffffff;
+    --slate: #4b5563; --slate-light: #f1f5f9;
+    --rust: #9b3a2a; --rust-light: #fdf0ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--warm); color: var(--ink); min-height: 100vh; }
+
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 32px; background: var(--white); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px;
+  }
+  .nav-brand { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--accent); letter-spacing: -0.2px; }
+  .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 7px 13px; border: none; border-radius: 6px; font-size: 12px;
+    font-weight: 500; cursor: pointer; background: transparent; color: var(--muted);
+    transition: all 0.2s; font-family: 'Inter', sans-serif;
+  }
+  .tab-btn.active { background: var(--accent); color: white; }
+  .tab-btn:hover:not(.active) { background: var(--accent-light); color: var(--accent); }
+
+  .container { max-width: 840px; margin: 0 auto; padding: 44px 24px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 600; letter-spacing: 1.4px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+
+  .page-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 8px; color: var(--ink); }
+  .page-sub { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 580px; }
+
+  /* IDENTITY HERO */
+  .identity-hero {
+    background: var(--ink); border-radius: 14px;
+    padding: 36px 38px; margin-bottom: 10px; position: relative; overflow: hidden;
+  }
+  .identity-hero::before {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(176,125,46,0.07); pointer-events: none;
+  }
+  .identity-hero::after {
+    content: ''; position: absolute; bottom: -60px; left: -30px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(59,110,82,0.06); pointer-events: none;
+  }
+  .identity-label { font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+  .identity-title { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.3; color: white; margin-bottom: 6px; }
+  .identity-subtitle { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.5; color: var(--gold); margin-bottom: 18px; font-style: italic; }
+  .identity-body { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 520px; }
+  .identity-body em { color: #86d6a8; font-style: normal; }
+
+  /* SAMARITAN BLOCK */
+  .samaritan {
+    background: var(--gold-light); border: 1px solid #e5d0a0;
+    border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0;
+    padding: 20px 24px; margin-bottom: 24px;
+  }
+  .samaritan-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .samaritan-steps { display: flex; flex-direction: column; gap: 10px; }
+  .samaritan-step { display: flex; gap: 12px; align-items: flex-start; }
+  .samaritan-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .samaritan-text { font-size: 13px; color: #6b4c1a; line-height: 1.6; }
+  .samaritan-text strong { color: #7a5520; font-weight: 600; }
+
+  /* CARDS */
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 26px 30px; margin-bottom: 18px; }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
+  .card-title { font-family: 'DM Serif Display', serif; font-size: 19px; line-height: 1.3; }
+  .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; margin-left: 12px; flex-shrink: 0; }
+  .tag-green { background: var(--accent-light); color: var(--accent); }
+  .tag-gold { background: var(--gold-light); color: var(--gold); }
+  .tag-slate { background: var(--slate-light); color: var(--slate); }
+  .tag-rust { background: var(--rust-light); color: var(--rust); }
+
+  /* PILLS */
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .pill { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
+  .pill-h1 { border-color: #7c3aed; color: #7c3aed; background: #f5f3ff; }
+  .pill-h2 { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .pill-h4 { border-color: var(--gold); color: var(--gold); background: var(--gold-light); }
+  .pill-h6 { border-color: var(--rust); color: var(--rust); background: var(--rust-light); }
+  .pill-core { border-color: var(--ink); color: var(--ink); background: var(--parchment); font-style: italic; }
+
+  /* SCRIPTS */
+  .script-wrap { position: relative; margin: 14px 0; }
+  .script-box { background: var(--parchment); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 18px 22px; }
+  .script-box.gold { border-left-color: var(--gold); }
+  .script-box.slate { border-left-color: var(--slate); }
+  .script-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .script-text { font-size: 13.5px; line-height: 1.78; color: var(--ink); white-space: pre-line; padding-right: 60px; }
+
+  .copy-btn {
+    position: absolute; top: 14px; right: 14px; background: white;
+    border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px;
+    font-size: 11px; font-weight: 500; color: var(--muted); cursor: pointer;
+    transition: all 0.2s; font-family: 'Inter', sans-serif;
+  }
+  .copy-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .copy-btn.done { background: var(--accent); color: white; border-color: var(--accent); }
+
+  /* WHY LIST */
+  .why-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .why-item { display: flex; gap: 10px; font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .why-check { color: var(--accent); flex-shrink: 0; margin-top: 1px; font-weight: 600; }
+
+  /* PRINCIPLE */
+  .principle {
+    background: var(--gold-light); border: 1px solid #e5d0a0;
+    border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0;
+    padding: 14px 18px; margin: 16px 0; font-size: 13px;
+    color: #7a5520; line-height: 1.7; font-style: italic;
+  }
+
+  /* OVERVIEW GRID */
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .ov-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 20px; cursor: pointer; transition: all 0.2s; text-align: left;
+  }
+  .ov-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 2px 12px rgba(59,110,82,.1); }
+  .ov-icon { font-size: 20px; margin-bottom: 7px; }
+  .ov-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 3px; }
+  .ov-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* PILLARS */
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; margin-bottom: 24px; }
+  .pillar { padding: 14px 16px; background: var(--parchment); border-radius: 8px; border: 1px solid var(--border); }
+  .pillar-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+  .pillar-text { font-size: 12.5px; color: var(--slate); line-height: 1.6; }
+
+  /* Q LIST */
+  .q-list { display: flex; flex-direction: column; gap: 10px; }
+  .q-item { display: flex; gap: 14px; padding: 12px 16px; background: var(--parchment); border-radius: 8px; border: 1px solid var(--border); }
+  .q-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+  .q-text { font-size: 13px; color: var(--ink); line-height: 1.5; }
+  .q-why { font-size: 11px; color: var(--muted); margin-top: 3px; font-style: italic; }
+
+  /* DELIVERABLE */
+  .deliverable-box { background: linear-gradient(135deg, var(--accent-light) 0%, #f4fbf7 100%); border: 1px solid #b7ddc9; border-radius: 10px; padding: 22px 26px; margin-top: 18px; }
+  .deliverable-title { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--accent); margin-bottom: 10px; }
+  .deliverable-text { font-size: 13px; color: var(--ink); line-height: 1.75; }
+
+  /* ACTION */
+  .action-grid { display: flex; flex-direction: column; gap: 10px; }
+  .action-row { display: grid; grid-template-columns: 72px 1fr; gap: 14px; padding: 13px 16px; background: var(--parchment); border-radius: 8px; border: 1px solid var(--border); }
+  .action-day { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: var(--accent); padding-top: 1px; }
+  .action-text { font-size: 13px; color: var(--ink); line-height: 1.55; }
+  .action-text strong { font-weight: 600; }
+
+  @media (max-width: 600px) {
+    .overview-grid, .pillars { grid-template-columns: 1fr; }
+    .nav { padding: 12px 16px; }
+    .card { padding: 18px; }
+    .page-title { font-size: 24px; }
+    .script-text { padding-right: 0; }
+    .copy-btn { position: static; margin-top: 10px; display: block; }
+    .identity-hero { padding: 24px 20px; }
+    .identity-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Cariflow — First Outreach Kit</div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="show('overview')">Identity</button>
+    <button class="tab-btn" onclick="show('email')">Cold Email</button>
+    <button class="tab-btn" onclick="show('linkedin')">LinkedIn</button>
+    <button class="tab-btn" onclick="show('audit')">Free Audit</button>
+    <button class="tab-btn" onclick="show('plan')">Action Plan</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- IDENTITY -->
+<div class="panel active" id="panel-overview">
+  <div class="eyebrow"><div class="eyebrow-dot"></div>Who You Are</div>
+  <h1 class="page-title">The Neighbor Who Steps In<br>When It Feels Like Too Much</h1>
+  <p class="page-sub">Not a vendor. Not a hero. The person who remembers what it felt like when nobody showed up — and decided to be that person for someone else.</p>
+
+  <div class="identity-hero">
+    <div class="identity-label">Your Brand Identity</div>
+    <div class="identity-title">The Neighbor Who Steps In When It Feels Like Too Much</div>
+    <div class="identity-subtitle">Because I know what it feels like when nobody shows up.</div>
+    <div class="identity-body">
+      You're not overwhelmed because you're failing. You're overwhelmed because you're doing everything — and the technical weight nobody warned you about keeps piling up. <em>I step in for exactly that.</em> Not to take over, not to impress you — just to carry the part that's been keeping you up, so you can get back to the reason you started.
+    </div>
+  </div>
+
+  <div class="samaritan" style="margin-top:18px">
+    <div class="samaritan-label">The Good Samaritan Framework — Your Operating Model</div>
+    <div class="samaritan-steps">
+      <div class="samaritan-step">
+        <div class="samaritan-icon">👁️</div>
+        <div class="samaritan-text"><strong>He saw.</strong> You walk the neighborhood. You notice the heads-down exhaustion inside small businesses. You don't look away.</div>
+      </div>
+      <div class="samaritan-step">
+        <div class="samaritan-icon">🚶</div>
+        <div class="samaritan-text"><strong>He crossed over.</strong> You enter their world — their workflow, their tools, their anxiety — without judgment and without an agenda.</div>
+      </div>
+      <div class="samaritan-step">
+        <div class="samaritan-icon">🤲</div>
+        <div class="samaritan-text"><strong>He handled it.</strong> You take on the technical burden they've been dreading — not because it's easy, but because you're genuinely built for it.</div>
+      </div>
+      <div class="samaritan-step">
+        <div class="samaritan-icon">🏃</div>
+        <div class="samaritan-text"><strong>He left care behind.</strong> The systems you build keep working after you're gone. Ongoing support, not a one-time fix. You don't just show up — you stay.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:10px"><div class="eyebrow-dot"></div>Four Posture Pillars</div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-label">Witness</div>
+      <div class="pillar-text">You see the weight before they say a word. That awareness — rooted in your own experience of being buried — is what makes people trust you before you've done anything.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-label">Presence</div>
+      <div class="pillar-text">You're local. You walk the same streets. That proximity means you're not a remote vendor — you're a neighbor who can actually show up.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-label">Burden-Bearing</div>
+      <div class="pillar-text">You take on what overwhelms others — not with ego, but with genuine capacity. The technical complexity that gives them anxiety is where you're most at home.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-label">Continuity</div>
+      <div class="pillar-text">Like the Samaritan who left care behind, your systems keep running. You don't hand them a one-time fix — you build something that stays.</div>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-bottom:10px"><div class="eyebrow-dot"></div>The Three-Piece Package</div>
+  <div class="overview-grid">
+    <div class="ov-card" onclick="show('email')">
+      <div class="ov-icon">✉️</div>
+      <div class="ov-title">Cold Email — Healthcare</div>
+      <div class="ov-desc">Two versions. Warm, local, burden-aware. Leads with their anxiety, not your product.</div>
+    </div>
+    <div class="ov-card" onclick="show('linkedin')">
+      <div class="ov-icon">💼</div>
+      <div class="ov-title">LinkedIn — General SMB</div>
+      <div class="ov-desc">Connection note + follow-up. Opens with curiosity, transitions naturally to care.</div>
+    </div>
+    <div class="ov-card" onclick="show('audit')">
+      <div class="ov-icon">🤝</div>
+      <div class="ov-title">Free Admin Time Audit</div>
+      <div class="ov-desc">30 minutes. 8 questions. A gift — not a pitch. The Good Samaritan crossing over.</div>
+    </div>
+    <div class="ov-card" onclick="show('plan')">
+      <div class="ov-icon">📅</div>
+      <div class="ov-title">7-Day Action Plan</div>
+      <div class="ov-desc">Exact daily steps. Show up consistently — that's the whole strategy.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">The Rule That Governs Every Word You Write</div></div>
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">→</div><div>Never imply they <em>should</em> have figured this out already. The overwhelm is not their failure — it's just weight they were never meant to carry alone.</div></div>
+      <div class="why-item"><div class="why-check">→</div><div>Lead with witness before you lead with solution. Name what they're feeling before you offer to fix it. People hire the person who understands them first.</div></div>
+      <div class="why-item"><div class="why-check">→</div><div>The faith thread stays invisible — but every word should feel like it was written by someone who genuinely cares whether this person is okay. Because you do.</div></div>
+      <div class="why-item"><div class="why-check">→</div><div>You are not the hero of their story. You're the neighbor who crossed the road. They are the one who gets back up.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- COLD EMAIL -->
+<div class="panel" id="panel-email">
+  <div class="eyebrow"><div class="eyebrow-dot"></div>Cold Email — Healthcare SMBs</div>
+  <h1 class="page-title">The Email That Feels Like Someone Actually Noticed</h1>
+  <p class="page-sub">Dental, chiro, PT, behavioral health. Two versions — test both. The one that gets replies is your standard going forward.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Version A — Your Neighbor Noticed</div>
+      <div class="tag tag-green">Hook 6 + Hook 4</div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-h6">Neighbor sees them</span>
+      <span class="pill pill-h4">The weight they can't see</span>
+      <span class="pill pill-core">Steps in without judgment</span>
+    </div>
+
+    <div class="script-wrap">
+      <div class="script-box">
+        <div class="script-label">Subject Line</div>
+        <div class="script-text">I walk past your office — and I can see how much your team is carrying</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,'I walk past your office — and I can see how much your team is carrying')">Copy</button>
+    </div>
+
+    <div class="script-wrap">
+      <div class="script-box">
+        <div class="script-label">Email Body</div>
+        <div class="script-text">Hi [Name],
+
+I'm Dave — I live and work right here in Long Beach, and I walk past small practices like yours more than you might think.
+
+I want you to know: I see how much your team is carrying. The intake paperwork, the follow-ups that slip through, the reminders nobody had time to set up — it all adds up quietly until one day it just feels like too much.
+
+I've been there. Buried under the operational weight of a business, with no one to call who understood the technical side of it. That's exactly why I do what I do now.
+
+I'm an automation consultant. I step into the back-office complexity that overwhelms most small practices — intake workflows, appointment reminders, follow-up sequences — and I build systems that handle it automatically, so your team can put their energy back where it belongs: with your patients.
+
+I'm offering a free 30-minute Admin Time Audit to three local practices this month. No pitch. No strings. Just an honest look at what's weighing your team down — and what could be lifted off their plate.
+
+Worth 30 minutes?
+
+— Dave Horton
+Cariflow LLC | Long Beach, CA
+dave@gocariflow.com</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,`Hi [Name],\n\nI'm Dave — I live and work right here in Long Beach, and I walk past small practices like yours more than you might think.\n\nI want you to know: I see how much your team is carrying. The intake paperwork, the follow-ups that slip through, the reminders nobody had time to set up — it all adds up quietly until one day it just feels like too much.\n\nI've been there. Buried under the operational weight of a business, with no one to call who understood the technical side of it. That's exactly why I do what I do now.\n\nI'm an automation consultant. I step into the back-office complexity that overwhelms most small practices — intake workflows, appointment reminders, follow-up sequences — and I build systems that handle it automatically, so your team can put their energy back where it belongs: with your patients.\n\nI'm offering a free 30-minute Admin Time Audit to three local practices this month. No pitch. No strings. Just an honest look at what's weighing your team down — and what could be lifted off their plate.\n\nWorth 30 minutes?\n\n— Dave Horton\nCariflow LLC | Long Beach, CA\ndave@gocariflow.com`)">Copy</button>
+    </div>
+
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">✓</div><div>"Until one day it just feels like too much" — the title's emotional core lands in their inbox before they even know who you are</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"I've been there" — the most powerful two words in the email. Empathy earned through experience, not observation.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Step into the complexity" — Good Samaritan language. You cross over into their world.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Where it belongs: with your patients" — reminds them of their calling, not their burden</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Version B — You Didn't Sign Up for This Weight</div>
+      <div class="tag tag-gold">Hook 2 + Hook 1</div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-h2">Wrong burden</span>
+      <span class="pill pill-h1">Heads down exhaustion</span>
+      <span class="pill pill-core">Steps in without judgment</span>
+    </div>
+
+    <div class="script-wrap">
+      <div class="script-box gold">
+        <div class="script-label">Subject Line</div>
+        <div class="script-text">The back office was never supposed to feel like this</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,'The back office was never supposed to feel like this')">Copy</button>
+    </div>
+
+    <div class="script-wrap">
+      <div class="script-box gold">
+        <div class="script-label">Email Body</div>
+        <div class="script-text">Hi [Name],
+
+When you opened this practice, the vision wasn't the paperwork. It was the people.
+
+But somewhere between managing intake forms, chasing insurance follow-ups, and setting up reminders that still somehow fall through the cracks — the back office became its own overwhelming job. One that nobody warned you was coming, and one that's genuinely hard to hand off when you don't know where to start.
+
+That anxiety is real. And it's more common than you know.
+
+I'm Dave — a local automation consultant in Long Beach. I do the technical work that most practice owners have been meaning to get to but never quite have the bandwidth for. I build systems that handle the repetitive, draining back-office tasks automatically, so the weight isn't sitting on your team every single day.
+
+I'm offering a free 30-minute Admin Time Audit to three local practices this month — an honest conversation about what's overwhelming your workflow, and a clear picture of what could finally be lifted off your plate.
+
+No obligation. Just a neighbor who knows how to carry this particular kind of weight.
+
+— Dave Horton
+Cariflow LLC | Long Beach, CA
+dave@gocariflow.com</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,`Hi [Name],\n\nWhen you opened this practice, the vision wasn't the paperwork. It was the people.\n\nBut somewhere between managing intake forms, chasing insurance follow-ups, and setting up reminders that still somehow fall through the cracks — the back office became its own overwhelming job. One that nobody warned you was coming, and one that's genuinely hard to hand off when you don't know where to start.\n\nThat anxiety is real. And it's more common than you know.\n\nI'm Dave — a local automation consultant in Long Beach. I do the technical work that most practice owners have been meaning to get to but never quite have the bandwidth for. I build systems that handle the repetitive, draining back-office tasks automatically, so the weight isn't sitting on your team every single day.\n\nI'm offering a free 30-minute Admin Time Audit to three local practices this month — an honest conversation about what's overwhelming your workflow, and a clear picture of what could finally be lifted off your plate.\n\nNo obligation. Just a neighbor who knows how to carry this particular kind of weight.\n\n— Dave Horton\nCariflow LLC | Long Beach, CA\ndave@gocariflow.com`)">Copy</button>
+    </div>
+
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">✓</div><div>"Nobody warned you was coming" — removes blame entirely. The overwhelm was never their fault.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"That anxiety is real" — names it directly and validates it. Most cold emails never go near the emotional truth.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Never quite have the bandwidth for" — no judgment. They haven't avoided it wilfully — they've been underwater.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"This particular kind of weight" — specificity signals you actually understand what they're carrying</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Follow-Up — Day 5, No Response</div>
+      <div class="tag tag-green">Warm. No pressure.</div>
+    </div>
+    <div class="script-wrap">
+      <div class="script-box">
+        <div class="script-label">Follow-Up Body</div>
+        <div class="script-text">Hi [Name],
+
+Just bumping this up — I know how quickly things get buried when you're running a practice.
+
+No pressure at all. If now isn't the right time, I completely understand. The weight doesn't always let up enough to add one more thing, even when that thing might help.
+
+The offer stands whenever you're ready. No expiration date on it.
+
+Take good care of yourself out there.
+
+— Dave</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,`Hi [Name],\n\nJust bumping this up — I know how quickly things get buried when you're running a practice.\n\nNo pressure at all. If now isn't the right time, I completely understand. The weight doesn't always let up enough to add one more thing, even when that thing might help.\n\nThe offer stands whenever you're ready. No expiration date on it.\n\nTake good care of yourself out there.\n\n— Dave`)">Copy</button>
+    </div>
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">✓</div><div>"The weight doesn't always let up enough" — you're not frustrated they didn't reply. You genuinely understand why.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"No expiration date" — generous, open-handed. The opposite of a countdown timer. Consistent with who you are.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Take good care of yourself" — nobody ends a cold email follow-up like this. They will remember it.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN -->
+<div class="panel" id="panel-linkedin">
+  <div class="eyebrow"><div class="eyebrow-dot"></div>LinkedIn DM — General SMBs</div>
+  <h1 class="page-title">See Them First. Offer Later.</h1>
+  <p class="page-sub">Your only goal in the first two messages is to make them feel witnessed — not prospected. The offer comes when it's earned, not when it's convenient for you.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Step 1 — Connection Request Note</div>
+      <div class="tag tag-slate">300 char limit</div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-h6">Local witness</span>
+      <span class="pill pill-h2">Purpose restored</span>
+    </div>
+    <div class="script-wrap">
+      <div class="script-box slate">
+        <div class="script-label">Connection Note</div>
+        <div class="script-text">Hi [Name] — Long Beach local here. I help small business owners step out from under the back-office overwhelm so they can focus on what they actually built the business for. Love connecting with people doing good work in our community.</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,'Hi [Name] — Long Beach local here. I help small business owners step out from under the back-office overwhelm so they can focus on what they actually built the business for. Love connecting with people doing good work in our community.')">Copy</button>
+    </div>
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">✓</div><div>"Step out from under" — burden language, not productivity language. More human, more true.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Doing good work in our community" — you see them before they've said a word to you</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Step 2 — Follow-Up DM (Day 3)</div>
+      <div class="tag tag-slate">Witness before offer</div>
+    </div>
+    <div class="script-wrap">
+      <div class="script-box slate">
+        <div class="script-label">First DM After Connect</div>
+        <div class="script-text">Hey [Name] — appreciate you connecting.
+
+Honest question with zero agenda: what's the one thing in your business that you keep meaning to fix or figure out — but every time you think about it, it just feels like too much to even start?
+
+I ask because I'm building automation tools specifically for Long Beach small businesses, and I want to understand where the real anxiety lives — not just the surface-level stuff.
+
+Genuinely asking.</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,`Hey [Name] — appreciate you connecting.\n\nHonest question with zero agenda: what's the one thing in your business that you keep meaning to fix or figure out — but every time you think about it, it just feels like too much to even start?\n\nI ask because I'm building automation tools specifically for Long Beach small businesses, and I want to understand where the real anxiety lives — not just the surface-level stuff.\n\nGenuinely asking.`)">Copy</button>
+    </div>
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">✓</div><div>"Feels like too much to even start" — the title's emotional core lands in a DM. Names the anxiety without labeling them.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Where the real anxiety lives" — signals you understand that the surface problem and the real problem are different things</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Step 3 — After They Reply</div>
+      <div class="tag tag-slate">Natural transition</div>
+    </div>
+    <div class="script-wrap">
+      <div class="script-box slate">
+        <div class="script-label">Transition to Audit</div>
+        <div class="script-text">That makes complete sense — and I want you to know, that's not a you problem. [echo their specific thing] is exactly the kind of task that sits in the background creating low-grade anxiety until someone finally just steps in and handles it.
+
+I do a free 30-minute Admin Time Audit for local business owners — I come in, ask the right questions, and map out what's actually possible to lift off your plate. No tools to buy, no commitment.
+
+Would it help to have someone just come in and look at it with you?</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,`That makes complete sense — and I want you to know, that's not a you problem. [echo their specific thing] is exactly the kind of task that sits in the background creating low-grade anxiety until someone finally just steps in and handles it.\n\nI do a free 30-minute Admin Time Audit for local business owners — I come in, ask the right questions, and map out what's actually possible to lift off your plate. No tools to buy, no commitment.\n\nWould it help to have someone just come in and look at it with you?`)">Copy</button>
+    </div>
+    <div class="why-list">
+      <div class="why-item"><div class="why-check">✓</div><div>"That's not a you problem" — the single most relieving sentence you can say to someone who's been silently blaming themselves</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Low-grade anxiety" — names the exact feeling that makes people avoid things even when they know they need help</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"Someone just come in and look at it with you" — the Good Samaritan crossing over. Present. Non-threatening. Alongside, not above.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIT -->
+<div class="panel" id="panel-audit">
+  <div class="eyebrow"><div class="eyebrow-dot"></div>Free Productized Service</div>
+  <h1 class="page-title">The Admin Time Audit</h1>
+  <p class="page-sub">30 minutes. 8 questions. A bespoke field guide they keep forever. You cross over into their world, understand their weight, then leave behind something genuinely useful — whether they ever hire you or not.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">How to Open the Call</div>
+      <div class="tag tag-rust">First 60 seconds</div>
+    </div>
+    <div class="principle">
+      Your posture on this call: you are the neighbor who showed up. Not the expert who arrived. Listen more than you talk. Everything they tell you becomes the raw material for a gift you send within 24 hours — one they'll keep, reference, and probably show someone else.
+    </div>
+    <div class="script-wrap">
+      <div class="script-box">
+        <div class="script-label">Opening Script</div>
+        <div class="script-text">Hey [Name], I'm really glad you made time for this — I know that's not easy when you're running a practice.
+
+Before we start, I just want to say again: this isn't a sales call. I'm here because I genuinely want to understand what your day-to-day looks like — the parts that are working and the parts that feel like they're always just slightly out of control.
+
+I'm going to ask you 8 questions. At the end I'll share my honest read on what I'm seeing, and within 24 hours I'll send you a personal guide — built entirely from what you tell me today — with one thing you can actually implement yourself this week, for free, plus a preview of what else is possible if you ever want to go further.
+
+You can do whatever you want with it. There's no ask at the end.
+
+Ready?</div>
+      </div>
+      <button class="copy-btn" onclick="cp(this,`Hey [Name], I'm really glad you made time for this — I know that's not easy when you're running a practice.\n\nBefore we start, I just want to say again: this isn't a sales call. I'm here because I genuinely want to understand what your day-to-day looks like — the parts that are working and the parts that feel like they're always just slightly out of control.\n\nI'm going to ask you 8 questions. At the end I'll share my honest read on what I'm seeing, and within 24 hours I'll send you a personal guide — built entirely from what you tell me today — with one thing you can actually implement yourself this week, for free, plus a preview of what else is possible if you ever want to go further.\n\nYou can do whatever you want with it. There's no ask at the end.\n\nReady?`)">Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">The 8 Discovery Questions</div>
+      <div class="tag tag-rust">Listen twice as much as you talk</div>
+    </div>
+    <div class="principle">
+      Every answer feeds the deliverable. Q7 and Q8 are especially important — Q7 reveals your Quick Win, Q8 gives you the emotional close for the guide. Take notes in their exact words.
+    </div>
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-num">01</div>
+        <div>
+          <div class="q-text">Walk me through what happens the moment a new patient or customer first contacts you — from their very first message to when they walk through the door.</div>
+          <div class="q-why">Maps the full intake flow — manual steps surface immediately when they describe it out loud</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">02</div>
+        <div>
+          <div class="q-text">How do you handle appointment reminders right now — and what happens when someone no-shows?</div>
+          <div class="q-why">No-show rate is a direct revenue leak and usually the fastest, most satisfying automation win</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">03</div>
+        <div>
+          <div class="q-text">What does your intake or onboarding paperwork look like today — paper, digital, or somewhere in between?</div>
+          <div class="q-why">Paper-based intake = immediate high-value automation opportunity, especially in healthcare</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">04</div>
+        <div>
+          <div class="q-text">Roughly how many hours a week does your team spend on data entry or moving information between systems?</div>
+          <div class="q-why">Quantifies the invisible weight — their answer becomes your ROI anchor in the guide</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">05</div>
+        <div>
+          <div class="q-text">Do you follow up with clients after appointments or purchases — and if so, how does that actually happen day to day?</div>
+          <div class="q-why">Follow-up automation is consistently the highest-ROI, lowest-friction starting point</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">06</div>
+        <div>
+          <div class="q-text">What tools or software does your team actually open every single day?</div>
+          <div class="q-why">Critical — tells you which free tools to build the Quick Win around so it feels native, not foreign</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">07</div>
+        <div>
+          <div class="q-text">What's the task your team keeps doing that someone has quietly thought "there has to be a better way" — but nobody's had time to figure it out?</div>
+          <div class="q-why">⭐ This answer becomes your Quick Win. The thing they name here is what you teach them to fix in the guide — step by step, free tools, runnable by Friday.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">08</div>
+        <div>
+          <div class="q-text">If I could give your team 5 hours back every single week — what would you actually do with that time?</div>
+          <div class="q-why">⭐ This answer closes the guide. Their own words, reflected back — "that's what this is for." Makes the ROI personal and human, not theoretical.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">The Deliverable — "The Small Practice Breathing Room Guide"</div>
+      <div class="tag tag-rust">Sent within 24 hrs</div>
+    </div>
+    <div class="principle">
+      Not a proposal. Not a one-pager. A bespoke 6-page field guide — their name on the cover, their words inside, one working quick win they can implement themselves this week. The Good Samaritan doesn't just describe the bandage. He puts it on.
+    </div>
+
+    <div class="deliverable-box">
+      <div class="deliverable-title">The Small Practice Breathing Room Guide</div>
+      <div class="deliverable-text">
+        <strong>Cover</strong> — their business name, your name, Cariflow branding. Personal from the first second they open it.<br><br>
+        <strong>Page 2 — "What I Heard"</strong> — 3–4 sentences in their exact words. The section that makes them feel genuinely witnessed, not processed.<br><br>
+        <strong>Page 3 — The Quick Win (bespoke, flex per client)</strong> — a step-by-step guide to the one automation they can set up themselves, this week, using tools they already have. No new software. No tech background needed. Estimated setup time: 15–20 minutes. Built from Q7.<br><br>
+        <strong>Page 4 — What's Possible Next</strong> — two more automations previewed at just enough detail to be interesting. Not a pitch — more like "here's the door, if you ever want to open it."<br><br>
+        <strong>Page 5 — A Word About Overwhelm</strong> — your story, in one paragraph. Names the anxiety. Removes the shame. Opens the door without pressure.<br><br>
+        <strong>Back Cover</strong> — your brand identity line as the final thought. The last thing they read is who you are.
+      </div>
+    </div>
+
+    <div class="why-list" style="margin-top:16px">
+      <div class="why-item"><div class="why-check">✓</div><div>The Quick Win is the game-changer. They implement it, it works, and the question becomes "what else could he build?" — without you ever asking.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>"What I Heard" is the section they'll tell someone else about. Nobody does this. It's the proof you were actually present.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>Each guide takes ~10 minutes to personalize from the template. The bones never change. The soul is always theirs.</div></div>
+      <div class="why-item"><div class="why-check">✓</div><div>Three of these completed = your first portfolio, your first testimonials, and your first case study page — all from free work that cost you 90 minutes each.</div></div>
+    </div>
+
+    <div style="margin-top:20px; padding:16px 20px; background:var(--accent-light); border-radius:8px; border:1px solid #b7ddc9;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Fill-In Checklist — Before You Send</div>
+      <div style="font-size:13px; color:var(--ink); line-height:1.8;">
+        ☐ &nbsp;Cover: [Business Name] and [Contact Name] swapped in<br>
+        ☐ &nbsp;"What I Heard": written in their words, not yours<br>
+        ☐ &nbsp;Quick Win title reflects their specific Q7 answer<br>
+        ☐ &nbsp;Quick Win tool matches what they said in Q6 (tools they already use)<br>
+        ☐ &nbsp;Estimated time saved is calculated from Q4 answer<br>
+        ☐ &nbsp;Automation #2 and #3 named to their workflow, not generic<br>
+        ☐ &nbsp;Q8 answer woven into the closing of Page 5<br>
+        ☐ &nbsp;Your email and gocariflow.com correct throughout<br>
+        ☐ &nbsp;Sent within 24 hours of the call — not 48, not "soon"
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTION PLAN -->
+<div class="panel" id="panel-plan">
+  <div class="eyebrow"><div class="eyebrow-dot"></div>7-Day Action Plan</div>
+  <h1 class="page-title">Show Up. Every Day. That's the Strategy.</h1>
+  <p class="page-sub">The Good Samaritan didn't plan to be there — he just was. Your version of that is consistency. Show up in your community every day, with no agenda other than to be genuinely useful.</p>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">This Week</div></div>
+    <div class="action-grid">
+      <div class="action-row">
+        <div class="action-day">TODAY</div>
+        <div class="action-text"><strong>Build the list.</strong> Google Maps: "dental office Long Beach," "chiropractor Long Beach," "physical therapy Long Beach." 10 practices. Name, public email, office manager name if findable. Simple spreadsheet: Name | Business | Email | Sent | Reply.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 2</div>
+        <div class="action-text"><strong>Send 5 healthcare emails.</strong> Start with Version A. Personalize one specific detail per email — a real practice name, a real street. Log send date. This is your first act of crossing over into someone else's world.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 3</div>
+        <div class="action-text"><strong>5 LinkedIn connection requests</strong> to Long Beach SMB owners using the connection note. Join 2 local Facebook groups. Don't post yet — just listen. See what people are carrying before you say a word.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 4</div>
+        <div class="action-text"><strong>Post one observation on LinkedIn.</strong> 3–5 sentences. What you notice when you walk the neighborhood. The heads-down exhaustion in small businesses. No Cariflow. No pitch. Just a neighbor who sees people. End with one honest question.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 5</div>
+        <div class="action-text"><strong>Follow-up DMs</strong> to everyone who accepted on LinkedIn. Send the curiosity question — "what feels like too much to even start?" Also send the Day 5 follow-up email to healthcare contacts who haven't replied.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 6</div>
+        <div class="action-text"><strong>Send 5 more healthcare emails</strong> — Version B. Also answer one genuine question in a Facebook Group. Don't pitch. Just be the neighbor who knows the answer and shares it freely, the way you'd want someone to do for you.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 7</div>
+        <div class="action-text"><strong>Review and reflect.</strong> What resonated? What got replies? What felt most like you? Adjust accordingly. Goal: 1 audit booked by end of Week 2. Remember — you're building trust in a community, not running a campaign.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">30-Day Milestones</div></div>
+    <div class="action-grid">
+      <div class="action-row">
+        <div class="action-day">WK 1</div>
+        <div class="action-text">20 outreach touches. 2+ replies. 1 audit booked. You've started crossing over.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">WK 2</div>
+        <div class="action-text">First audit completed. One-pager delivered within 24 hrs. Second audit booked. People are starting to feel who you are before they know what you sell.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">WK 3–4</div>
+        <div class="action-text">3 audits completed. 1 warm conversation about a paid engagement. First testimonial asked for — it won't feel awkward because you've already earned it.</div>
+      </div>
+      <div class="action-row">
+        <div class="action-day">DAY 30</div>
+        <div class="action-text">If 0 paid clients: the posture is right, the volume isn't. The neighbor has to walk more streets. Double the outreach — don't change who you are.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">The One Thing That Changes Everything</div></div>
+    <div class="principle">
+      The Good Samaritan didn't have a strategy. He had a posture — and he showed up. Your version of that is sending the email when you don't feel like it, answering the group question when there's nothing in it for you, following up with warmth when you got no reply. That consistency, over 90 days, is what builds the kind of trust that makes someone call you when it finally feels like too much.
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const panels = ['overview','email','linkedin','audit','plan'];
+function show(name) {
+  panels.forEach(p => document.getElementById('panel-'+p).classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', panels[i] === name));
+  document.getElementById('panel-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function cp(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
