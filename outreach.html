@@ -4,32 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cariflow — First Outreach Kit v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
   :root {
-    --ink: #1c1917; --warm: #faf7f4; --parchment: #f2ede6;
-    --accent: #3b6e52; --accent-light: #eaf3ee;
-    --gold: #b07d2e; --gold-light: #fdf4e3;
-    --muted: #78716c; --border: #e7e0d8; --white: #ffffff;
-    --slate: #4b5563; --slate-light: #f1f5f9;
-    --rust: #9b3a2a; --rust-light: #fdf0ee;
+    --ink:          #1A2F45;
+    --warm:         #F8FAFD;
+    --parchment:    #EEF4FB;
+    --accent:       #2E7BC4;
+    --accent-light: #E6F1FB;
+    --gold:         #3D5A78;
+    --gold-light:   #E4EDF7;
+    --muted:        #6B83A0;
+    --border:       rgba(24,95,165,0.12);
+    --border-solid: #D0DFEF;
+    --white:        #ffffff;
+    --slate:        #2A4460;
+    --slate-light:  #EEF4FB;
+    --rust:         #1A2F45;
+    --rust-light:   #E4EDF7;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', sans-serif; background: var(--warm); color: var(--ink); min-height: 100vh; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
   .nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 32px; background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 14px 32px; background: rgba(248,250,253,0.95); border-bottom: 1px solid var(--border);
     position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px;
+    backdrop-filter: blur(12px);
   }
-  .nav-brand { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--accent); letter-spacing: -0.2px; }
+  .nav-brand { font-family: 'Lora', Georgia, serif; font-size: 17px; font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
+  .nav-brand span { color: var(--accent); }
   .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
   .tab-btn {
-    padding: 7px 13px; border: none; border-radius: 6px; font-size: 12px;
+    padding: 7px 13px; border: none; border-radius: 4px; font-size: 12px;
     font-weight: 500; cursor: pointer; background: transparent; color: var(--muted);
-    transition: all 0.2s; font-family: 'Inter', sans-serif;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
   }
-  .tab-btn.active { background: var(--accent); color: white; }
+  .tab-btn.active { background: var(--ink); color: white; }
   .tab-btn:hover:not(.active) { background: var(--accent-light); color: var(--accent); }
 
   .container { max-width: 840px; margin: 0 auto; padding: 44px 24px; }
@@ -38,52 +51,52 @@
 
   .eyebrow {
     display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 600; letter-spacing: 1.4px;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
   }
-  .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 
-  .page-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 8px; color: var(--ink); }
+  .page-title { font-family: 'Lora', Georgia, serif; font-size: 30px; line-height: 1.2; margin-bottom: 8px; color: var(--ink); font-weight: 500; }
   .page-sub { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 580px; }
 
   /* IDENTITY HERO */
   .identity-hero {
-    background: var(--ink); border-radius: 14px;
+    background: var(--ink); border-radius: 12px;
     padding: 36px 38px; margin-bottom: 10px; position: relative; overflow: hidden;
   }
   .identity-hero::before {
     content: ''; position: absolute; top: -50px; right: -50px;
     width: 220px; height: 220px; border-radius: 50%;
-    background: rgba(176,125,46,0.07); pointer-events: none;
+    background: rgba(46,123,196,0.08); pointer-events: none;
   }
   .identity-hero::after {
     content: ''; position: absolute; bottom: -60px; left: -30px;
     width: 160px; height: 160px; border-radius: 50%;
-    background: rgba(59,110,82,0.06); pointer-events: none;
+    background: rgba(46,123,196,0.05); pointer-events: none;
   }
-  .identity-label { font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
-  .identity-title { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.3; color: white; margin-bottom: 6px; }
-  .identity-subtitle { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.5; color: var(--gold); margin-bottom: 18px; font-style: italic; }
+  .identity-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+  .identity-title { font-family: 'Lora', Georgia, serif; font-size: 28px; line-height: 1.3; color: white; margin-bottom: 6px; font-weight: 500; }
+  .identity-subtitle { font-family: 'Lora', Georgia, serif; font-size: 16px; line-height: 1.5; color: var(--accent-light); margin-bottom: 18px; font-style: italic; }
   .identity-body { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 520px; }
-  .identity-body em { color: #86d6a8; font-style: normal; }
+  .identity-body em { color: #B5D4F4; font-style: normal; }
 
   /* SAMARITAN BLOCK */
   .samaritan {
-    background: var(--gold-light); border: 1px solid #e5d0a0;
-    border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0;
+    background: var(--accent-light); border: 1px solid var(--border-solid);
+    border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0;
     padding: 20px 24px; margin-bottom: 24px;
   }
-  .samaritan-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .samaritan-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
   .samaritan-steps { display: flex; flex-direction: column; gap: 10px; }
   .samaritan-step { display: flex; gap: 12px; align-items: flex-start; }
   .samaritan-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-  .samaritan-text { font-size: 13px; color: #6b4c1a; line-height: 1.6; }
-  .samaritan-text strong { color: #7a5520; font-weight: 600; }
+  .samaritan-text { font-size: 13px; color: var(--slate); line-height: 1.6; }
+  .samaritan-text strong { color: var(--ink); font-weight: 600; }
 
   /* CARDS */
   .card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 26px 30px; margin-bottom: 18px; }
   .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
-  .card-title { font-family: 'DM Serif Display', serif; font-size: 19px; line-height: 1.3; }
+  .card-title { font-family: 'Lora', Georgia, serif; font-size: 19px; line-height: 1.3; font-weight: 500; }
   .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; margin-left: 12px; flex-shrink: 0; }
   .tag-green { background: var(--accent-light); color: var(--accent); }
   .tag-gold { background: var(--gold-light); color: var(--gold); }
@@ -92,11 +105,11 @@
 
   /* PILLS */
   .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-  .pill { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
-  .pill-h1 { border-color: #7c3aed; color: #7c3aed; background: #f5f3ff; }
+  .pill { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border-solid); color: var(--muted); }
+  .pill-h1 { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
   .pill-h2 { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
   .pill-h4 { border-color: var(--gold); color: var(--gold); background: var(--gold-light); }
-  .pill-h6 { border-color: var(--rust); color: var(--rust); background: var(--rust-light); }
+  .pill-h6 { border-color: var(--slate); color: var(--slate); background: var(--slate-light); }
   .pill-core { border-color: var(--ink); color: var(--ink); background: var(--parchment); font-style: italic; }
 
   /* SCRIPTS */
@@ -109,11 +122,11 @@
 
   .copy-btn {
     position: absolute; top: 14px; right: 14px; background: white;
-    border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px;
+    border: 1px solid var(--border-solid); border-radius: 4px; padding: 4px 10px;
     font-size: 11px; font-weight: 500; color: var(--muted); cursor: pointer;
-    transition: all 0.2s; font-family: 'Inter', sans-serif;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
   }
-  .copy-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .copy-btn:hover { background: var(--ink); color: white; border-color: var(--ink); }
   .copy-btn.done { background: var(--accent); color: white; border-color: var(--accent); }
 
   /* WHY LIST */
@@ -123,10 +136,10 @@
 
   /* PRINCIPLE */
   .principle {
-    background: var(--gold-light); border: 1px solid #e5d0a0;
-    border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0;
+    background: var(--parchment); border: 1px solid var(--border-solid);
+    border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
     padding: 14px 18px; margin: 16px 0; font-size: 13px;
-    color: #7a5520; line-height: 1.7; font-style: italic;
+    color: var(--slate); line-height: 1.7; font-style: italic;
   }
 
   /* OVERVIEW GRID */
@@ -135,7 +148,7 @@
     background: var(--white); border: 1px solid var(--border); border-radius: 10px;
     padding: 18px 20px; cursor: pointer; transition: all 0.2s; text-align: left;
   }
-  .ov-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 2px 12px rgba(59,110,82,.1); }
+  .ov-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 2px 12px rgba(46,123,196,.12); }
   .ov-icon { font-size: 20px; margin-bottom: 7px; }
   .ov-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 3px; }
   .ov-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
@@ -143,7 +156,7 @@
   /* PILLARS */
   .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; margin-bottom: 24px; }
   .pillar { padding: 14px 16px; background: var(--parchment); border-radius: 8px; border: 1px solid var(--border); }
-  .pillar-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+  .pillar-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
   .pillar-text { font-size: 12.5px; color: var(--slate); line-height: 1.6; }
 
   /* Q LIST */
@@ -154,8 +167,8 @@
   .q-why { font-size: 11px; color: var(--muted); margin-top: 3px; font-style: italic; }
 
   /* DELIVERABLE */
-  .deliverable-box { background: linear-gradient(135deg, var(--accent-light) 0%, #f4fbf7 100%); border: 1px solid #b7ddc9; border-radius: 10px; padding: 22px 26px; margin-top: 18px; }
-  .deliverable-title { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--accent); margin-bottom: 10px; }
+  .deliverable-box { background: linear-gradient(135deg, var(--accent-light) 0%, var(--warm) 100%); border: 1px solid var(--border-solid); border-radius: 10px; padding: 22px 26px; margin-top: 18px; }
+  .deliverable-title { font-family: 'Lora', Georgia, serif; font-size: 17px; color: var(--accent); margin-bottom: 10px; font-weight: 500; }
   .deliverable-text { font-size: 13px; color: var(--ink); line-height: 1.75; }
 
   /* ACTION */
@@ -180,7 +193,7 @@
 <body>
 
 <nav class="nav">
-  <div class="nav-brand">Cariflow — First Outreach Kit</div>
+  <div class="nav-brand"><span>Cariflow</span> — First Outreach Kit</div>
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="show('overview')">Identity</button>
     <button class="tab-btn" onclick="show('email')">Cold Email</button>
