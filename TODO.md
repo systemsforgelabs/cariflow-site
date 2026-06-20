@@ -170,6 +170,11 @@ Commit both as "feat: add robots.txt and sitemap.xml" and push to feature/seo-st
 
 ## ✅ Completed
 
-<!-- Move tasks here with completion date as you finish them -->
-<!-- Example: -->
-<!-- - [x] Initial index.html site generated and committed — 2026-06-01 -->
+- [x] Initial index.html site generated and committed — 2026-06-01
+- [x] pitch.html interactive company pitch presentation — 2026-06-09
+- [x] outreach.html First Outreach Kit (tabbed, copy-able scripts) — 2026-06-09
+- [x] brand.html brand reference page — 2026-06-09
+- [x] CLAUDE.md project context file added to repo — 2026-06-19
+- [x] Cloudflare Pages CI/CD wired to GitHub main — 2026-06-19 (test domain active; gocariflow.com domain added to CF, not yet assigned to Pages project)
+- [x] Git identity configured (dave@gocariflow.com / Dave Horton) — 2026-06-19
+- [x] outreach.html restyled to Cariflow brand system (Lora, DM Sans, navy/blue palette) — 2026-06-19
